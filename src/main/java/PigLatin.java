@@ -44,31 +44,37 @@ public class PigLatin {
         //precondition: sWord is a valid String of length greater than 0
         //postcondition: returns the pig latin equivalent of sWord
         // more code should go here
-	sSentence += " ";
+	if(sSentence.substring(sSentence.length() - 1).equals(".") == false){
+        	sSentence += " ";
+      	}
       	String sentence = "";
       	int wordCount = 1;
       	int wordLength = 0;
       	for(int i = 0; i < sSentence.length(); i++){
-        	if(sSentence.substring(i, i + 1).equals(" ")){
+        	String end = sSentence.substring(i, i + 1);
+        	if(end.equals(" ") || end.equals(".") || end.equals(",")){
             		wordCount++;
             		String word = new String("");
             		String sWord = sSentence.substring(i - wordLength, i);
             		int firstVowelNum = findFirstVowel(sWord);
-            		if(sWord.length() >= 2 && sWord.substring(0, 2).equals("qu")){
+            		if(sWord.length() == 0){
+              			word = "";
+            		}
+            		else if(sWord.length() >= 2 && sWord.substring(0, 2).equals("qu")){
               			word = sWord.substring(2, sWord.length()) + sWord.substring(0, 2) + "ay";
             		}
             		else if(firstVowelNum == -1) {
               			word = sWord + "ay";
-           		}
+            		}
             		else if(firstVowelNum == 0){
               			word = sWord + "way";
             		}
             		else {
               			word = sWord.substring(firstVowelNum, sWord.length()) + sWord.substring(0, firstVowelNum) + "ay";
             		}
-            		sentence += word;
-            		if(i != sSentence.length() - 1){
-              			sentence += " ";
+            		sentence += word + end;
+           		if(i == sSentence.length() - 1 && sentence.substring(sentence.length()-1) == " "){
+              			sentence = sentence.substring(0, sentence.length() - 1);
             		}
             		wordLength = 0;
         	}
