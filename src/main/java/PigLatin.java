@@ -48,12 +48,10 @@ public class PigLatin {
         	sSentence += " ";
       	}
       	String sentence = "";
-      	int wordCount = 1;
       	int wordLength = 0;
       	for(int i = 0; i < sSentence.length(); i++){
         	String end = sSentence.substring(i, i + 1);
         	if(end.equals(" ") || end.equals(".") || end.equals(",")){
-            		wordCount++;
             		String word = new String("");
             		String sWord = sSentence.substring(i - wordLength, i);
             		int firstVowelNum = findFirstVowel(sWord);
