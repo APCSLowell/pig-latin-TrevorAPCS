@@ -31,18 +31,51 @@ public class PigLatin {
         //precondition: sWord is a valid String of length greater than 0.
         //postcondition: returns the position of the first vowel in sWord.  If there are no vowels, returns -1
 	    // your code goes here
+	for(int i = 0; i < sWord.length(); i++){
+          char c = sWord.charAt(i);
+          if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'){
+            return i;
+          }
+        }
         return -1;
     }
 
-    public String pigLatin(String sWord) {
+    public String pigLatin(String sSentence) {
         //precondition: sWord is a valid String of length greater than 0
         //postcondition: returns the pig latin equivalent of sWord
         // more code should go here
-	    if(findFirstVowel(sWord) == -1) {
-		    return sWord + "ay";
-	    }
-	    else {
-		return "ERROR!";
-	    }
+	sSentence += " ";
+      	String sentence = "";
+      	int wordCount = 1;
+      	int wordLength = 0;
+      	for(int i = 0; i < sSentence.length(); i++){
+        	if(sSentence.substring(i, i + 1).equals(" ")){
+            		wordCount++;
+            		String word = new String("");
+            		String sWord = sSentence.substring(i - wordLength, i);
+            		int firstVowelNum = findFirstVowel(sWord);
+            		if(sWord.length() >= 2 && sWord.substring(0, 2).equals("qu")){
+              			word = sWord.substring(2, sWord.length()) + sWord.substring(0, 2) + "ay";
+            		}
+            		else if(firstVowelNum == -1) {
+              			word = sWord + "ay";
+           		}
+            		else if(firstVowelNum == 0){
+              			word = sWord + "way";
+            		}
+            		else {
+              			word = sWord.substring(firstVowelNum, sWord.length()) + sWord.substring(0, firstVowelNum) + "ay";
+            		}
+            		sentence += word;
+            		if(i != sSentence.length() - 1){
+              			sentence += " ";
+            		}
+            		wordLength = 0;
+        	}
+        	else{
+          		wordLength++;
+        	}
+      	}
+      	return sentence;
     }
 }//end PigLatin class
