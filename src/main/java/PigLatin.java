@@ -74,7 +74,7 @@ public class PigLatin {
               			word = sWord.substring(firstVowelNum, sWord.length()) + sWord.substring(0, firstVowelNum) + "ay";
             		}
             		sentence += word + end;
-           		if(i == sSentence.length() - 1 && sentence.substring(sentence.length()-1) == " "){
+           		if(i == sSentence.length() - 1 && sentence.substring(sentence.length()-1).equals(" ")){
               			sentence = sentence.substring(0, sentence.length() - 1);
             		}
             		wordLength = 0;
