@@ -5,10 +5,10 @@ import java.util.Scanner; // Import the Scanner class to read text files
 public class PigLatin {
     
     public void tester() {
-        // String[] lines = loadStrings("words.txt");
+        //String[] lines = loadStrings("words.txt");
         String[] lines = new String[8]; 
         try{
-            File myFile = new File("words.txt");
+            File myFile = new File("src/words.txt");
             Scanner myReader = new Scanner(myFile);
             int counter = 0;
             while (myReader.hasNextLine()) {
@@ -44,7 +44,10 @@ public class PigLatin {
         //precondition: sWord is a valid String of length greater than 0
         //postcondition: returns the pig latin equivalent of sWord
         // more code should go here
-	if(sSentence.substring(sSentence.length() - 1).equals(".") == false){
+		if(sSentence == null){
+			return null;
+		}
+		if(sSentence.substring(sSentence.length() - 1).equals(".") == false){
         	sSentence += " ";
       	}
       	String sentence = "";
